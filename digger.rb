@@ -1,7 +1,21 @@
 require 'bundler'
 Bundler.require
 
-set :server, :puma
+require_relative 'store'
+require_relative 'helpers'
+
+configure :development do
+  MongoMapper.database = 'digger_db'
+end
+
+configure :production do
+  MongoMapper.setup({'production' => {'uri' => ENV['MONGODB_URI']}}, 'production')
+end
+
+configure do
+  set :server, :puma
+  update_record_stores
+end
 
 get '/' do
   'sup'
