@@ -1,4 +1,5 @@
 require 'bundler'
+require 'uri'
 Bundler.require
 
 
@@ -7,7 +8,11 @@ configure :development do
 end
 
 configure :production do
-  MongoMapper.setup({'production' => {'uri' => ENV['MONGODB_URI']}}, 'production')
+  # from https://gist.github.com/kimenye/3121021
+  uri = URI.parse(ENV['MONGOHQ_URL'])
+  MongoMapper.connection = Mongo::Connection.from_uri(ENV['MONGOHQ_URL'])
+  MongoMapper.database = uri.path.gsub(/^\//, '')
+  puts ">> db is #{uri.path.gsub(/^\//, '')}"
 end
 
 require_relative 'store'
