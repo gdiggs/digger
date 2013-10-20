@@ -1,9 +1,9 @@
 .row
   .col-lg-6
-    %form
+    %form{ action: '/near', method: 'GET' }
       .input-group
-        %input.form-control{ name: 'address', type: 'text', placeholder: 'Address'}
+        %input.form-control{ name: 'address', type: 'text', placeholder: 'Enter a starting address'}
         %span.input-group-btn
-          %button.btn.btn-default{ type: "button" } Go!
+          %button.btn.btn-default{ type: "submit" } Go!
 
 

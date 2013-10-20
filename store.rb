@@ -6,7 +6,7 @@ class Store
   ensure_index :id
   ensure_index [[:location, '2d']]
 
-  def self.nearest(location)
-    where(:location => {'$near' => location}).limit(1).first
+  def self.near(location)
+    where(:location => {'$near' => location})
   end
 end

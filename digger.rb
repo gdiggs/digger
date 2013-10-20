@@ -21,3 +21,9 @@ end
 get '/' do
   haml :index
 end
+
+get '/near' do
+  @location = GeocoderWrapper.new(params[:address])
+  @stores = Store.near @location.location
+  haml :near
+end
