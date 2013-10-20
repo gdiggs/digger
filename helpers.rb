@@ -1,3 +1,5 @@
+require_relative 'geocoder_wrapper'
+
 def update_record_stores
   puts "Getting updated list of record stores"
   n = 0

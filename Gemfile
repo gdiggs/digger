@@ -11,4 +11,4 @@ gem 'bson_ext'
 gem 'tux'
 gem 'haml'
 gem 'sass'
-
+gem 'geocoder'
