@@ -9,4 +9,6 @@ gem 'typhoeus'
 gem 'mongo_mapper'
 gem 'bson_ext'
 gem 'tux'
+gem 'haml'
+gem 'sass'
 
