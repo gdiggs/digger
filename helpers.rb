@@ -7,6 +7,7 @@ def update_record_stores
     store = Store.find_by_id(shop['id'])
     next if store
     n += 1
+    shop['location'] = [shop['lat'].to_f, shop['lng'].to_f]
     store = Store.create(shop)
   end
   puts "Updated stores. Added #{n} new stores."

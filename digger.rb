@@ -1,8 +1,6 @@
 require 'bundler'
 Bundler.require
 
-require_relative 'store'
-require_relative 'helpers'
 
 configure :development do
   MongoMapper.database = 'digger_db'
