@@ -1,0 +1,16 @@
+:javascript
+  Route = {
+    origin: {
+      latitude: #{@location[0]},
+      longitude: #{@location[1]}
+    },
+    waypoints: #{@stores.map { |s| {location:s.address,stopover:true} }.to_json}
+  };
+#panel
+  %b Mode of Travel:
+  %select#mode{onchange: "calcRoute();"}
+    %option{value: "DRIVING"} Driving
+    %option{value: "WALKING"} Walking
+    %option{value: "BICYCLING"} Bicycling
+    %option{value: "TRANSIT"} Transit
+#map-canvas

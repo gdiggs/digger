@@ -1,4 +1,5 @@
 require_relative 'geocoder_wrapper'
+require_relative 'google_directions_wrapper'
 
 def update_record_stores
   if Store.count > 0 && Store.last.created_at > (Time.now - 1.day)

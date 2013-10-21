@@ -27,8 +27,20 @@ get '/' do
   haml :index
 end
 
+get '/map' do
+  @origin = "ADDRESS HERE"
+  @location = GeocoderWrapper.new(@origin).location
+  @stores = Store.near(@location).limit(5).to_a
+  haml :map
+end
+
 get '/near' do
   @location = GeocoderWrapper.new(params[:address])
   @stores = Store.near @location.location
   haml :near
+end
+
+get '/stylesheet.css' do
+  content_type 'text/css'
+  sass :stylesheet
 end
