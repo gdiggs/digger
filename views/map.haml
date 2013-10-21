@@ -4,7 +4,7 @@
       latitude: #{@location[0]},
       longitude: #{@location[1]}
     },
-    waypoints: #{@stores.map { |s| {location:s.address,stopover:true} }.to_json}
+    waypoints: #{@stores.map { |s| {location:s.address} }.to_json}
   };
 #panel
   %b Mode of Travel:
