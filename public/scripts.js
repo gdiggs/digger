@@ -30,6 +30,7 @@ $(function() {
   }
   map = new google.maps.Map($('#map-canvas')[0], mapOptions);
   directionsDisplay.setMap(map);
+  directionsDisplay.setPanel($('#directions-panel')[0]);
 
   calcRoute();
 });
