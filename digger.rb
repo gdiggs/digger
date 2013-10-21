@@ -28,9 +28,9 @@ get '/' do
 end
 
 get '/map' do
-  @origin = "ADDRESS HERE"
-  @location = GeocoderWrapper.new(@origin).location
-  @stores = Store.near(@location).limit(5).to_a
+  @origin = params[:address]
+  @location = GeocoderWrapper.new(params[:address]).location
+  @stores = Store.near(@location).limit(8).to_a
   haml :map
 end
 
