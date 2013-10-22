@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/GordonDiggs/digger.png)](https://codeclimate.com/github/GordonDiggs/digger)
+
 # Digger
 
 ## Find out which record stores to go to
