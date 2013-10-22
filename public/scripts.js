@@ -2,6 +2,8 @@ $(function() {
   var directionsDisplay;
   var directionsService = new google.maps.DirectionsService();
   var map;
+  var storeDisplay;
+  var markers = [];
   var origin = new google.maps.LatLng(Route.origin.latitude, Route.origin.longitude);
 
   var calcRoute = function() {
@@ -20,9 +22,20 @@ $(function() {
     });
   };
 
+  var attachStoreInfo = function(marker, store) {
+    google.maps.event.addListener(marker, 'click', function() {
+      var text = store.name + '<br>' + store.address + ' ' + store.addinfo + '<br>' + store.phone;
+      storeDisplay.setContent(text);
+      storeDisplay.open(map, marker);
+    });
+  };
+
   $('#mode').change(calcRoute);
 
-  directionsDisplay = new google.maps.DirectionsRenderer();
+  directionsDisplay = new google.maps.DirectionsRenderer({
+    suppressMarkers: true,
+    suppressInfoWindows: true
+  });
   var mapOptions = {
     zoom: 14,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -31,6 +44,24 @@ $(function() {
   map = new google.maps.Map($('#map-canvas')[0], mapOptions);
   directionsDisplay.setMap(map);
   directionsDisplay.setPanel($('#directions-panel')[0]);
+  storeDisplay = new google.maps.InfoWindow();
+
+  $.each(Route.stores, function(i, store) {
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(store.lat, store.lng),
+      title: store.name,
+      animation: google.maps.Animation.DROP,
+      map: map
+    });
+    attachStoreInfo(marker, store);
+    markers[i] = marker;
+  });
+
+  var originMarker = new google.maps.Marker({
+    position: new google.maps.LatLng(Route.origin.latitude, Route.origin.longitude),
+    map: map,
+    title: 'Starting Point'
+  });
 
   calcRoute();
 });

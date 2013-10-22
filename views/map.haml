@@ -4,6 +4,7 @@
       latitude: #{@location[0]},
       longitude: #{@location[1]}
     },
+    stores: #{@stores.to_json},
     waypoints: #{@stores.map { |s| {location:s.address} }.to_json}
   };
 #panel
