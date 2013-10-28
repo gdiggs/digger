@@ -1,3 +1,9 @@
-%ol
+%h4 Select the stores to map:
+
+%form.store-selection{ :action => '/map', :method => 'GET' }
+  %input{ :type => 'hidden', :value => params[:address], :name => 'address' }
   - @stores.each do |store|
-    %li #{store.name} #{store.address}
+    %input.checkbox{ :type => 'checkbox', :name => 'store_ids[]', :value => store.id, :id => "store_#{store.id}" }
+    %label{ :for => "store_#{store.id}" } #{store.name} #{store.address}
+    %br
+  %button.btn.btn-primary.btn-success.btn-lg{ :type => "submit" } Map it!

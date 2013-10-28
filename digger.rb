@@ -30,7 +30,11 @@ end
 get '/map' do
   @origin = params[:address]
   @location = GeocoderWrapper.new(params[:address]).location
-  @stores = Store.near(@location).limit(8).to_a
+  if params[:store_ids]
+    @stores = Store.find(params[:store_ids])
+  else
+    @stores = Store.near(@location).limit(8).to_a
+  end
   haml :map
 end
 
